@@ -27,11 +27,11 @@ namespace EpicorBridge.Controllers
         }
        
         /// <summary>
-        /// Returns a list of all customers from a BAQ
+        /// Executes a BAQ
         /// </summary>       
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetCustomerList()
+        public async Task<IActionResult> CallBAQ()
         {
             var response = await _epiAPIConnect.ExecuteBAQ(EpiBAQs.GetCustomers, Request.Query, Method.GET); 
             return response;
@@ -39,38 +39,35 @@ namespace EpicorBridge.Controllers
            
 
         /// <summary>
-        /// Returns list of Bill To Customers from a BAQ with a required parameter
+        /// Executes a BAQ with a required BAQ Parameter
         /// </summary>
-        /// <param name="soldToCustNum"></param>
+        /// <param name="zipCode"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetBillToCustomerList([Required]string soldToCustNum)
+        public async Task<IActionResult> CallMandatoryParameterizedBAQ([Required]string zipCode)
         {
-            if (!String.IsNullOrEmpty(soldToCustNum))
+            if (!String.IsNullOrEmpty(zipCode))
             {                
-                var response = await _epiAPIConnect.ExecuteBAQ(EpiBAQs.GetBillToCustomers, Request.Query, Method.GET);
+                var response = await _epiAPIConnect.ExecuteBAQ(EpiBAQs.GetCustomersParam, Request.Query, Method.GET);
                 return response;
             }
             else
                 return BadRequest("Input is empty");            
         }
 
-       
+
 
         /// <summary>
-        /// Returns posted invoice data from a BAQ with optional parameter
+        /// Executes a BAQ with an optional BAQ Parameter and set a default value if none is provided
         /// </summary>
         /// <remarks>
         /// </remarks>
-        /// <param name="priorMonth">"true"</param>
+        /// <param name="zipCode">"true"</param>
         /// <returns></returns>
-        /// <remarks>
-        /// Returns either the default of current month to date data when called, or if passed with the "priorMonth" parameter vaue of "true", returns the prior month data. 
-        /// </remarks>
         [HttpGet]
-        public async Task<IActionResult> GetInvoiceData(string priorMonth = "false")
+        public async Task<IActionResult> CallOptionalParameterizedBAQ(string zipCode = "90210")
         {
-            var response = await _epiAPIConnect.ExecuteBAQ(EpiBAQs.GetInvoiceData, Request.Query, Method.GET);
+            var response = await _epiAPIConnect.ExecuteBAQ(EpiBAQs.GetCustomersParamOptional, Request.Query, Method.GET);
             return response;
         }
 

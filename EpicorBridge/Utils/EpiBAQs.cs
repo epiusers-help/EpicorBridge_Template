@@ -10,18 +10,10 @@ namespace EpicorBridge.Utils
     /// </summary>
     public class EpiBAQs
     {
-        //Customer Specific 
-        public static string GetCustomers = new string("WEB_Customers");
-        public static string GetBillToCustomers = new string("WEB_GetBillToCustomers");
-       
-
-        //PerCon Specific
-        public static string GetPerCons = new string("WEB_PerCons");
-        public static string GetLinkedCustomers = new string("WEB_PerConCustCnt");
-
-        //Invoice Specific
-        public static string GetInvoiceData = new string("WEB_GetInvoiceData"); 
-
+        //Sample BAQ Strings and values
+        public static string GetCustomers = new string("zCustomer01");
+        public static string GetCustomersParam = new string("zCustomer01_Param");
+        public static string GetCustomersParamOptional = new string("zCustomer01_ParamOptional");
 
     }
 
