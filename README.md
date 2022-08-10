@@ -27,6 +27,7 @@ Other settings could be configured here as well.
 
 ## Application Organization
 The application is organized into two main sections. The ```Utils``` folder holds classes and services responsible for client API Key Authentication, Epicor Session brokering, Epicor Connection settings, and static Function and BAQ definitions that are consumed in this app. 
+
 ![image](https://user-images.githubusercontent.com/23319293/183758153-fbfe6150-d15f-43d8-950c-6f66ee0535d5.png)
 
 
